@@ -5,7 +5,6 @@ import android.content.res.Resources;
 import android.util.DisplayMetrics;
 
 public class Utils {
-
     /**
      * 屏幕宽度
      */

@@ -1,6 +1,9 @@
-package com.willpower.state;
+package com.willpower.state.model;
 
+import android.graphics.Canvas;
 import android.view.View;
+
+import com.willpower.state.animator.IProgress;
 
 /**
  * 包含状态切换功能的接口
@@ -10,6 +13,8 @@ public interface IState {
     int ERROR = 1;//异常
     int EMPTY = 2;//没有数据
     int NET_ERROR = 3;//无网络
+
+    void drawContent(Canvas canvas);
 
     /**
      * State -> Empty
@@ -51,6 +56,21 @@ public interface IState {
     void netError(String errorMsg, View.OnClickListener refresh);
 
     /**
+     * State -> Loading
+     * 方法重载
+     * param => refresh 点击事件回调
+     */
+    void loading();
+
+    void loading(String msg);
+
+    void loading(IProgress iProgress);
+
+    void loading(String msg,IProgress iProgress);
+
+    void hideLoading();
+
+    /**
      * State => Content
      * 正常界面显示
      */
@@ -63,4 +83,6 @@ public interface IState {
     void withAnimator(boolean with);
 
     boolean isWithAnimator();
+
+    void release();
 }

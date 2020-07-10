@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/target"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="80dp"
+            android:src="@drawable/icon_java" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="80dp"
+            android:text="正常显示界面，点击按钮可以改变布局状态" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/stateConfig"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/onRedText"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="#777777"
+            android:text="红色字体"/>
+
+        <CheckBox
+            android:id="@+id/onLargeText"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:textColor="#777777"
+            android:gravity="center"
+            android:text="大号字体" />
+
+        <CheckBox
+            android:id="@+id/onLargeIcon"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="#777777"
+            android:text="大号Icon" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/onNonNetWork"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="#FFFFFF"
+            android:textColor="#777777"
+            android:text="无网络" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/onError"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:textColor="#777777"
+            android:background="#FFFFFF"
+            android:text="错误" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/onLoading"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:textColor="#777777"
+            android:background="#FFFFFF"
+            android:text="加载中" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/onEmpty"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:textColor="#777777"
+            android:background="#FFFFFF"
+            android:text="没有数据" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/onContent"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:background="#FFFFFF"
+            android:textColor="#777777"
+            android:layout_weight="1"
+            android:text="显示正常布局" />
+    </LinearLayout>
+
+</LinearLayout>

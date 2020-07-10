@@ -3,6 +3,9 @@
     <!--**********************************************
     *                  StateLayout                    *
     **********************************************-->
-    <integer name="text_size">16</integer>
-    <color name="text_color">@android:color/darker_gray</color>
+    <dimen name="text_size">16sp</dimen>
+    <dimen name="icon_size">30dp</dimen>
+    <dimen name="progress_size">50dp</dimen>
+    <color name="text_color">#aaa</color>
+    <bool name="animator">false</bool>
 </resources>

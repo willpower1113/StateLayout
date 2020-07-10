@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="StateLayout">
+        <!--        初始状态-->
         <attr name="state" format="enum">
             <enum name="content" value="0"></enum>
             <enum name="error" value="1"></enum>
             <enum name="empty" value="2"></enum>
             <enum name="net_error" value="3"></enum>
         </attr>
+        <!--        图标大小-->
+        <attr name="iconSize" format="dimension"></attr>
+        <!--        加载中动画大小-->
+        <attr name="progressSize" format="dimension"></attr>
+        <!--        是否带转场动画-->
+        <attr name="withAnimator" format="boolean"></attr>
     </declare-styleable>
 </resources>
