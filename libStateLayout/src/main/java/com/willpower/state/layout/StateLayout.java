@@ -44,7 +44,6 @@ public class StateLayout extends ViewGroup implements IState, GestureDetector.On
     IProgress progress;
 
 
-
     /**
      * 事件
      */
