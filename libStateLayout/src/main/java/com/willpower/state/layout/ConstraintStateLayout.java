@@ -49,19 +49,39 @@ public class ConstraintStateLayout extends ConstraintLayout implements IModel {
      * param => refresh 点击事件回调
      */
     public void empty() {
-        helper.empty();
+        post(new Runnable() {
+            @Override
+            public void run() {
+                helper.empty();
+            }
+        });
     }
 
-    public void empty(String msg) {
-        helper.empty(msg);
+    public void empty(final String msg) {
+        post(new Runnable() {
+            @Override
+            public void run() {
+                helper.empty(msg);
+            }
+        });
     }
 
-    public void empty(OnClickListener refresh) {
-        helper.empty(refresh);
+    public void empty(final OnClickListener refresh) {
+        post(new Runnable() {
+            @Override
+            public void run() {
+                helper.empty(refresh);
+            }
+        });
     }
 
-    public void empty(String msg, OnClickListener refresh) {
-        helper.empty(msg, refresh);
+    public void empty(final String msg, final OnClickListener refresh) {
+        post(new Runnable() {
+            @Override
+            public void run() {
+                helper.empty(msg, refresh);
+            }
+        });
     }
 
     /**
@@ -70,19 +90,39 @@ public class ConstraintStateLayout extends ConstraintLayout implements IModel {
      * param => refresh 点击事件回调
      */
     public void error() {
-        helper.error();
+        post(new Runnable() {
+            @Override
+            public void run() {
+                helper.error();
+            }
+        });
     }
 
-    public void error(String errorMsg) {
-        helper.error(errorMsg);
+    public void error(final String errorMsg) {
+        post(new Runnable() {
+            @Override
+            public void run() {
+                helper.error(errorMsg);
+            }
+        });
     }
 
-    public void error(OnClickListener refresh) {
-        helper.error(refresh);
+    public void error(final OnClickListener refresh) {
+        post(new Runnable() {
+            @Override
+            public void run() {
+                helper.error(refresh);
+            }
+        });
     }
 
-    public void error(String errorMsg, OnClickListener refresh) {
-        helper.error(errorMsg,refresh);
+    public void error(final String errorMsg, final OnClickListener refresh) {
+        post(new Runnable() {
+            @Override
+            public void run() {
+                helper.error(errorMsg,refresh);
+            }
+        });
     }
 
     /**
@@ -91,44 +131,89 @@ public class ConstraintStateLayout extends ConstraintLayout implements IModel {
      * param => refresh 点击事件回调
      */
     public void netError() {
-        helper.netError();
+        post(new Runnable() {
+            @Override
+            public void run() {
+                helper.netError();
+            }
+        });
     }
 
-    public void netError(String errorMsg) {
-        helper.netError(errorMsg);
+    public void netError(final String errorMsg) {
+        post(new Runnable() {
+            @Override
+            public void run() {
+                helper.netError(errorMsg);
+            }
+        });
     }
 
-    public void netError(OnClickListener refresh) {
-        helper.netError(refresh);
+    public void netError(final OnClickListener refresh) {
+        post(new Runnable() {
+            @Override
+            public void run() {
+                helper.netError(refresh);
+            }
+        });
     }
 
-    public void netError(String errorMsg, OnClickListener refresh) {
-        helper.netError(errorMsg, refresh);
+    public void netError(final String errorMsg, final OnClickListener refresh) {
+        post(new Runnable() {
+            @Override
+            public void run() {
+                helper.netError(errorMsg, refresh);
+            }
+        });
     }
 
     @Override
     public void loading() {
-        helper.loading();
+        post(new Runnable() {
+            @Override
+            public void run() {
+                helper.loading();
+            }
+        });
     }
 
     @Override
-    public void loading(String msg) {
-        helper.loading(msg);
+    public void loading(final String msg) {
+        post(new Runnable() {
+            @Override
+            public void run() {
+                helper.loading(msg);
+            }
+        });
     }
 
     @Override
-    public void loading(IProgress iProgress) {
-        helper.loading( iProgress);
+    public void loading(final IProgress iProgress) {
+        post(new Runnable() {
+            @Override
+            public void run() {
+                helper.loading( iProgress);
+            }
+        });
     }
 
     @Override
-    public void loading(String msg,IProgress iProgress) {
-        helper.loading(msg, iProgress);
+    public void loading(final String msg, final IProgress iProgress) {
+        post(new Runnable() {
+            @Override
+            public void run() {
+                helper.loading(msg, iProgress);
+            }
+        });
     }
 
     @Override
     public void hideLoading() {
-        helper.hideLoading();
+        post(new Runnable() {
+            @Override
+            public void run() {
+                helper.hideLoading();
+            }
+        });
     }
 
     /**
@@ -136,9 +221,13 @@ public class ConstraintStateLayout extends ConstraintLayout implements IModel {
      * 正常界面显示
      */
     public void content() {
-        helper.content();
+        post(new Runnable() {
+            @Override
+            public void run() {
+                helper.content();
+            }
+        });
     }
-
     @Override
     public void withAnimator(boolean with) {
         helper.withAnimator(with);

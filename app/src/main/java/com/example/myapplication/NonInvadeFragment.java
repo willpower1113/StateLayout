@@ -42,6 +42,7 @@ public class NonInvadeFragment extends Fragment implements View.OnClickListener 
         initView();
         stateHelper = new NonInvadeStateHelper((ViewGroup) rootView, target);
         stateHelper.withAnimator(true);//开启动画
+        stateHelper.empty();
         return rootView;
     }
 

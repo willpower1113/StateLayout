@@ -171,11 +171,17 @@ public class StateLayout extends ViewGroup implements IState, GestureDetector.On
         empty("没有数据！", refresh);
     }
 
-    public void empty(String msg, OnClickListener refresh) {
-        hideLoading();
-        this.message = msg;
-        this.resource = R.drawable.icon_empty;
-        postInvalidate();
+    public void empty(final String msg, OnClickListener refresh) {
+        post(new Runnable() {
+            @Override
+            public void run() {
+                hideLoading();
+                StateLayout.this.message = msg;
+                StateLayout.this.resource = R.drawable.icon_empty;
+                postInvalidate();
+            }
+        });
+
     }
 
     /**
@@ -195,12 +201,17 @@ public class StateLayout extends ViewGroup implements IState, GestureDetector.On
         error("数据加载失败！", refresh);
     }
 
-    public void error(String errorMsg, OnClickListener refresh) {
-        hideLoading();
-        this.listener = refresh;
-        this.message = errorMsg;
-        this.resource = R.drawable.icon_error;
-        postInvalidate();
+    public void error(final String errorMsg, final OnClickListener refresh) {
+        post(new Runnable() {
+            @Override
+            public void run() {
+                hideLoading();
+                StateLayout.this.listener = refresh;
+                StateLayout.this.message = errorMsg;
+                StateLayout.this.resource = R.drawable.icon_error;
+                postInvalidate();
+            }
+        });
     }
 
     /**
@@ -220,12 +231,17 @@ public class StateLayout extends ViewGroup implements IState, GestureDetector.On
         netError("网络异常，请检查网络连接！", refresh);
     }
 
-    public void netError(String errorMsg, OnClickListener refresh) {
-        hideLoading();
-        this.listener = refresh;
-        this.message = errorMsg;
-        this.resource = R.drawable.icon_net_error;
-        postInvalidate();
+    public void netError(final String errorMsg, final OnClickListener refresh) {
+        post(new Runnable() {
+            @Override
+            public void run() {
+                hideLoading();
+                StateLayout.this.listener = refresh;
+                StateLayout.this.message = errorMsg;
+                StateLayout.this.resource = R.drawable.icon_net_error;
+                postInvalidate();
+            }
+        });
     }
 
     @Override
@@ -244,19 +260,30 @@ public class StateLayout extends ViewGroup implements IState, GestureDetector.On
     }
 
     @Override
-    public void loading(String msg, IProgress iProgress) {
-        this.listener = null;
-        this.message = msg;
-        this.progress = iProgress;
-        postInvalidate();
+    public void loading(final String msg, final IProgress iProgress) {
+        post(new Runnable() {
+            @Override
+            public void run() {
+                StateLayout.this.listener = null;
+                StateLayout.this.message = msg;
+                StateLayout.this.progress = iProgress;
+                postInvalidate();
+            }
+        });
+
     }
 
     @Override
     public void hideLoading() {
-        if (this.progress != null)
-            this.progress.hideProgress();
-        this.progress = null;
-        postInvalidate();
+        post(new Runnable() {
+            @Override
+            public void run() {
+                if (StateLayout.this.progress != null)
+                    StateLayout.this.progress.hideProgress();
+                StateLayout.this.progress = null;
+                postInvalidate();
+            }
+        });
     }
 
 
@@ -265,11 +292,17 @@ public class StateLayout extends ViewGroup implements IState, GestureDetector.On
      * 正常界面显示
      */
     public void content() {
-        this.setClickable(false);
-        this.setOnClickListener(null);
-        resource = 0;
-        message = null;
-        postInvalidate();
+        post(new Runnable() {
+            @Override
+            public void run() {
+                StateLayout.this.setClickable(false);
+                StateLayout.this.setOnClickListener(null);
+                StateLayout.this.resource = 0;
+                StateLayout.this.message = null;
+                postInvalidate();
+            }
+        });
+
     }
 
     @Override

@@ -18,10 +18,6 @@ import com.willpower.state.R;
 import com.willpower.state.animator.IProgress;
 import com.willpower.state.animator.ProgressCircleFlower;
 import com.willpower.state.animator.TransitionAnimation;
-import com.willpower.state.layout.ConstraintStateLayout;
-import com.willpower.state.layout.FrameStateLayout;
-import com.willpower.state.layout.LinearStateLayout;
-import com.willpower.state.layout.RelativeStateLayout;
 import com.willpower.state.model.IState;
 
 /**
@@ -83,7 +79,7 @@ public class StateChangeHelper<T extends ViewGroup> implements IState {
         state = a.getInt(R.styleable.StateLayout_state, CONTENT);
         iconSize = a.getDimensionPixelSize(R.styleable.StateLayout_iconSize, this.target.getContext().getResources().getDimensionPixelSize(R.dimen.icon_size));
         progressSize = a.getDimensionPixelSize(R.styleable.StateLayout_progressSize, this.target.getContext().getResources().getDimensionPixelSize(R.dimen.progress_size));
-        withAnimator = a.getBoolean(R.styleable.StateLayout_withAnimator,this.target.getContext().getResources().getBoolean(R.bool.animator));
+        withAnimator = a.getBoolean(R.styleable.StateLayout_withAnimator, this.target.getContext().getResources().getBoolean(R.bool.animator));
 
         a.recycle();
         this.target.post(new Runnable() {
@@ -206,15 +202,20 @@ public class StateChangeHelper<T extends ViewGroup> implements IState {
         empty("没有数据！", refresh);
     }
 
-    public void empty(String msg, View.OnClickListener refresh) {
-        hideContent();
-        hideLoading();
-        this.listener = refresh;
-        this.message = msg;
-        this.resource = R.drawable.icon_empty;
-        if (this.listener != null)
-            this.target.setOnClickListener(realListener);
-        this.target.postInvalidate();
+    public void empty(final String msg, final View.OnClickListener refresh) {
+        this.target.post(new Runnable() {
+            @Override
+            public void run() {
+                hideContent();
+                hideLoading();
+                StateChangeHelper.this.listener = refresh;
+                StateChangeHelper.this.message = msg;
+                StateChangeHelper.this.resource = R.drawable.icon_empty;
+                if (StateChangeHelper.this.listener != null)
+                    StateChangeHelper.this.target.setOnClickListener(realListener);
+                StateChangeHelper.this.target.postInvalidate();
+            }
+        });
     }
 
     /**
@@ -234,15 +235,15 @@ public class StateChangeHelper<T extends ViewGroup> implements IState {
         error("数据加载失败！", refresh);
     }
 
-    public void error(String errorMsg, View.OnClickListener refresh) {
-        hideContent();
-        hideLoading();
-        this.listener = refresh;
-        this.message = errorMsg;
-        this.resource = R.drawable.icon_error;
-        if (this.listener != null)
-            this.target.setOnClickListener(realListener);
-        this.target.postInvalidate();
+    public void error(final String errorMsg, final View.OnClickListener refresh) {
+                hideContent();
+                hideLoading();
+                StateChangeHelper.this.listener = refresh;
+                StateChangeHelper.this.message = errorMsg;
+                StateChangeHelper. this.resource = R.drawable.icon_error;
+                if (StateChangeHelper.this.listener != null)
+                    StateChangeHelper.this.target.setOnClickListener(realListener);
+                StateChangeHelper.this.target.postInvalidate();
     }
 
     /**
@@ -262,15 +263,15 @@ public class StateChangeHelper<T extends ViewGroup> implements IState {
         netError("网络异常，请检查网络连接！", refresh);
     }
 
-    public void netError(String errorMsg, View.OnClickListener refresh) {
-        hideContent();
-        hideLoading();
-        this.listener = refresh;
-        this.message = errorMsg;
-        this.resource = R.drawable.icon_net_error;
-        if (this.listener != null)
-            this.target.setOnClickListener(realListener);
-        this.target.postInvalidate();
+    public void netError(final String errorMsg, final View.OnClickListener refresh) {
+                hideContent();
+                hideLoading();
+                StateChangeHelper.this.listener = refresh;
+                StateChangeHelper.this.message = errorMsg;
+                StateChangeHelper.this.resource = R.drawable.icon_net_error;
+                if (StateChangeHelper.this.listener != null)
+                    StateChangeHelper.this.target.setOnClickListener(realListener);
+                StateChangeHelper.this.target.postInvalidate();
     }
 
     @Override
@@ -289,12 +290,12 @@ public class StateChangeHelper<T extends ViewGroup> implements IState {
     }
 
     @Override
-    public void loading(String msg, IProgress iProgress) {
-        hideContent();
-        this.listener = null;
-        this.message = msg;
-        this.progress = iProgress;
-        this.target.postInvalidate();
+    public void loading(final String msg, final IProgress iProgress) {
+                hideContent();
+                StateChangeHelper.this.listener = null;
+                StateChangeHelper.this.message = msg;
+                StateChangeHelper.this.progress = iProgress;
+                StateChangeHelper.this.target.postInvalidate();
     }
 
     @Override
@@ -309,12 +310,12 @@ public class StateChangeHelper<T extends ViewGroup> implements IState {
      * 正常界面显示
      */
     public void content() {
-        hideLoading();
-        this.listener = null;
-        this.resource = 0;
-        this.message = null;
-        this.target.postInvalidate();
-        showContent();
+                hideLoading();
+                StateChangeHelper.this.listener = null;
+                StateChangeHelper.this.resource = 0;
+                StateChangeHelper.this.message = null;
+                StateChangeHelper.this.target.postInvalidate();
+                showContent();
     }
 
     @Override
@@ -373,7 +374,8 @@ public class StateChangeHelper<T extends ViewGroup> implements IState {
         public void onClick(View view) {
             if (isMistake()) return;
             realTime = System.currentTimeMillis();
-            listener.onClick(view);
+            if (listener != null)
+                listener.onClick(view);
         }
     };
 
